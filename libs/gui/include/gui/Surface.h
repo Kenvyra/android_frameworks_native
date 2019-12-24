@@ -54,6 +54,9 @@ public:
     virtual bool needsReleaseNotify() = 0;
 
     virtual void onBuffersDiscarded(const std::vector<sp<GraphicBuffer>>& buffers) = 0;
+    virtual void onBufferDetached(int /**slot**/) {
+        // No-op
+    }
 };
 
 /*
@@ -388,6 +391,10 @@ protected:
         }
 
         virtual void onBuffersDiscarded(const std::vector<int32_t>& slots);
+
+        virtual void onBufferDetached(int slot) {
+            mSurfaceListener->onBufferDetached(slot);
+        }
     private:
         wp<Surface> mParent;
         sp<SurfaceListener> mSurfaceListener;
