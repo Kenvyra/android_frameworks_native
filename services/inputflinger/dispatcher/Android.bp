@@ -74,6 +74,7 @@ cc_defaults {
     header_libs: [
         "libinputdispatcher_headers",
     ],
+    cflags: ["-Wno-error=shadow-uncaptured-local"],
 }
 
 cc_library_static {
